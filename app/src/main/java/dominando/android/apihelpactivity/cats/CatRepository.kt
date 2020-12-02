@@ -5,7 +5,7 @@ import dominando.android.apihelpactivity.cats.Api.ResponseApiCats
 
 class CatRepository {
 
-    suspend fun getCat():ResponseApiCats{
+    suspend fun getCat(pageNumber:Int):ResponseApiCats{
         return try {
             val response= CatApiService.catApi.getSerie()
             if (response.isSuccessful){
