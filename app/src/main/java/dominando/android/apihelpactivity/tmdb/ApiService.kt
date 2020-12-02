@@ -1,14 +1,14 @@
-package dominando.android.apihelpactivity
+package dominando.android.apihelpactivity.tmdb
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiService {
-    val picpayApi = getPicPayClient().create(PicpayApi::class.java )
+    val topRated = getPicPayClient().create(PicpayApi::class.java )
 
     private fun getPicPayClient():Retrofit{
         return Retrofit.Builder()
-            .baseUrl("http://careers.picpay.com/tests/mobdev/")
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

@@ -1,4 +1,4 @@
-package dominando.android.apihelpactivity.adapter
+package dominando.android.apihelpactivity.tmdb.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dominando.android.apihelpactivity.R
-import dominando.android.apihelpactivity.model.UsersItem
+import dominando.android.apihelpactivity.tmdb.home.Result
+import dominando.android.apihelpactivity.tmdb.home.TopRated
 
-class HomeAdapter(val list: List<UsersItem>) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(val list: TopRated) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,17 +21,18 @@ class HomeAdapter(val list: List<UsersItem>) : RecyclerView.Adapter<HomeAdapter.
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(list.results[position])
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list.results.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(usersItem: UsersItem) = with(itemView) {
-        findViewById<TextView>(R.id.tvNameUser).text = usersItem.name
-            Glide.with(context).load(usersItem.img).into(findViewById<ImageView>(R.id.imgPhotoUser))
+        fun bind(result: Result) = with(itemView) {
+        findViewById<TextView>(R.id.tvNameUser).text = result.title
+val url = "https://image.tmdb.org/t/p/w500/"+ "${result.poster_path}"
+            Glide.with(context).load(url).into(findViewById<ImageView>(R.id.imgPhotoUser))
         }
 
     }

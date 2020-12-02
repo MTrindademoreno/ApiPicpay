@@ -1,14 +1,14 @@
-package dominando.android.apihelpactivity.model.home
+package dominando.android.apihelpactivity.tmdb.home
 
-import dominando.android.apihelpactivity.ApiService
-import dominando.android.apihelpactivity.ResponseApi
+import dominando.android.apihelpactivity.tmdb.ApiService
+import dominando.android.apihelpactivity.tmdb.ResponseApi
 
 class HomeRepository {
-    suspend fun getUsers(): ResponseApi {
-        val response = ApiService.picpayApi.users()
+    suspend fun getTopRated(): ResponseApi {
+        val response = ApiService.topRated.topRated()
         return try {
 
-            val response = ApiService.picpayApi.users()
+
             if (response.isSuccessful) {
                 ResponseApi.Success(response.body())
             } else {

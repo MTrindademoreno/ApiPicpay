@@ -8,6 +8,9 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         applicationId "dominando.android.apihelpactivity"
@@ -34,6 +37,7 @@ android {
     }
 }
 def coroutinesVersion = '1.4.1'
+def paging_version = "2.1.2"
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -52,4 +56,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation "androidx.paging:paging-runtime:$paging_version" // For Kotlin use paging-runtime-ktx
+
+    // alternatively - without Android dependencies for testing
+    testImplementation "androidx.paging:paging-common:$paging_version" // For Kotlin use paging-common-ktx
+
+    // optional - RxJava support
+    implementation "androidx.paging:paging-rxjava2:$paging_version"
+    implementation"com.squareup.okhttp3:okhttp:4.9.0"
+    implementation"com.squareup.okhttp3:logging-interceptor:4.9.0"
+
 }

@@ -1,28 +1,28 @@
-package dominando.android.apihelpactivity.viewModel
+package dominando.android.apihelpactivity.tmdb.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dominando.android.apihelpactivity.ResponseApi
-import dominando.android.apihelpactivity.model.Users
-import dominando.android.apihelpactivity.model.home.HomeRepository
+import dominando.android.apihelpactivity.tmdb.ResponseApi
+import dominando.android.apihelpactivity.tmdb.home.HomeBusinness
+import dominando.android.apihelpactivity.tmdb.home.TopRated
 import kotlinx.coroutines.launch
 
 class MainViewModel:ViewModel() {
 
-    val homeBusinness = HomeRepository()
-    val userLiveData:MutableLiveData<Users> = MutableLiveData()
+    val homeBusinness = HomeBusinness()
+    val userLiveData:MutableLiveData<TopRated> = MutableLiveData()
     val errorMessageLiveData: MutableLiveData<String> = MutableLiveData()
 
-    fun getUsers(){
+    fun getTopRated(){
 
         viewModelScope.launch {
-            val response = homeBusinness.getUsers()
+            val response = homeBusinness.getTopRated()
 
             when(response){
                 is ResponseApi.Success ->{
                     userLiveData.postValue(
-                        response.data as? Users
+                        response.data as? TopRated
                     )
                 }
                 is ResponseApi.Error ->{
